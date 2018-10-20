@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
 
   def tags_attributes=(attribute_hash)
     binding.pry
-    if attribute_hash.[0].empty? && !attribute_hash["name"].blank?
+    if !attribute_hash[0].empty? && !attribute_hash["name"].blank?
       tag = Tag.find_or_create_by(name: attribute_hash["name"])
       self.tags << tag
     end
