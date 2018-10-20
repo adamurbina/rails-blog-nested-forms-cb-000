@@ -8,8 +8,8 @@ class Post < ActiveRecord::Base
   #accepts_nested_attributes_for :tags, reject_if: proc { |attributes| attributes['name'].blank? }
 
   def tags_attributes=(attribute_hash)
-    attribute_hash.each do |index, attribute|
-      if attribute && attribute["name"].blank?
+    attribute_hash.each do |index, attributes|
+      if attributes && attributes["name"].blank?
         tag = Tag.find_or_create_by(name: attribute_hash["name"])
         self.tags << tag
       end
